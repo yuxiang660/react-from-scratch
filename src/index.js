@@ -1,12 +1,11 @@
-import img from './assets/logo.jpg';
-import './styles/main.scss';
-console.log(img);
-
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import React from "react";
 import ReactDOM from "react-dom";
+import App from './App';
+
 ReactDOM.render(
-  <div>
-    Hello world!
-  </div>,
+  <MuiThemeProvider>
+    <App />
+  </MuiThemeProvider>,
   document.getElementById('app')
 );
