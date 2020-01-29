@@ -1,4 +1,5 @@
 import { connect } from 'react-redux'
+import actions from '../actions'
 import TheComponent from '../components/App';
 
 const mapStateToProps = (stateFromCombineReducers, ownProps) => {
@@ -9,7 +10,7 @@ const mapStateToProps = (stateFromCombineReducers, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onClick: () => {
-      dispatch({ type: 'BASIC_ACTION', actionPayload: 'new text' })
+      dispatch({ type: actions.BASIC_ACTION, actionPayload: 'new text' })
     }
   }
 }
