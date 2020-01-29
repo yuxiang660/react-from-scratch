@@ -40,6 +40,13 @@ module.exports = {
         // npm i -D style-loader
         // npm i -D sass-loader node-sass 
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
+      },
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader"
+        }
       }
     ]
   },

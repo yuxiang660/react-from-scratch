@@ -48,7 +48,16 @@
     > use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
     - 修改`main.css`到为`main.scss`，并加入`scss`语法，参考[scss与css的区别](https://sass-lang.com/guide)。
     - `npm run build`后，发现输出的不是`main.scss`，而是转换后的`main.css`
-
+* 支持react语法，参考[教程](https://www.valentinog.com/blog/babel/)
+    - 安装`babel`
+    > npm i @babel/core babel-loader @babel/preset-env @babel/preset-react --save-dev
+    - 新建`.babelrc`配置babel
+    > { "presets": ["@babel/preset-env", "@babel/preset-react"] }
+    - `webpack.config.js`配置babel
+    > rules:[{test:..., use:{loader: "babel-loader"}}]
+    - 安装React
+    > npm i react react-dom
+    - 修改index.js，加入react语法
 
 # 问题汇总
 ## CleanWebpackPlugin
