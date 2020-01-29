@@ -41,6 +41,14 @@
     > npm install --save-dev mini-css-extract-plugin
     - 配置
     >  plugins: [...], module: { rules: [] }
+* 支持`scss`文件
+    - 安装`sass-loader`和`node-sass`，实现scss到css的转换
+    > npm i -D sass-loader node-sass
+    - 配置`sass`，要放到最后，会先执行`sass-loader`
+    > use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
+    - 修改`main.css`到为`main.scss`，并加入`scss`语法，参考[scss与css的区别](https://sass-lang.com/guide)。
+    - `npm run build`后，发现输出的不是`main.scss`，而是转换后的`main.css`
+
 
 # 问题汇总
 ## CleanWebpackPlugin

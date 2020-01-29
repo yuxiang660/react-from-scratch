@@ -34,8 +34,12 @@ module.exports = {
           }]
       },
       {
-        test: /\.css$/i,
-        use: [MiniCssExtractPlugin.loader, 'css-loader']
+        test: /\.(css|scss)$/i,
+        // npm i -D extract-text-webpack-plugin
+        // npm i -D css-loader
+        // npm i -D style-loader
+        // npm i -D sass-loader node-sass 
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
       }
     ]
   },
