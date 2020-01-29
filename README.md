@@ -58,6 +58,13 @@
     - 安装React
     > npm i react react-dom
     - 修改index.js，加入react语法
+* 支持`material-ui`
+    - 安装`material-ui`
+    > npm i -S material-ui
+    - 导入`material-ui`
+    > <MuiThemeProvider> <App /> </MuiThemeProvider>
+    - 使用`material-ui`组件
+    > const App = props => <div> <RaisedButton label="CLICK ME" /> </div>
 
 # 问题汇总
 ## CleanWebpackPlugin
