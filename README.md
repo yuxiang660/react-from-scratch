@@ -65,6 +65,31 @@
     > <MuiThemeProvider> <App /> </MuiThemeProvider>
     - 使用`material-ui`组件
     > const App = props => <div> <RaisedButton label="CLICK ME" /> </div>
+* 加入redux
+    - 安装`redux`
+    > npm i -S redux react-redux
+* Redux单元
+    - React显示单元
+        - 最底层的Redux单元，用于显示逻辑，不应该包含控制逻辑，一般是基本的React组件
+    - Containers
+        - 定义了底层显示单元的属性，例如点击的回调函数，state的值
+    - Reducers
+        - 一个函数，接收两个值（1.state;2.action），返回一值（最新的state）
+    - combineReducers对象
+        - 用于管理多个reducer，每个reducer的返回值被映射到不同的值上
+        - 当需要获取状态时，直接调用combineReducers.xxx对应的值即可
+    - Store
+        - 由`createStore`创建，接收combineReducers对象
+        - 所有状态由它管理，如果状态有变化，所有关心此状态的组件都会收到通知
+    - Provider
+        - 它的store属性被定义为上面的Store，用于存储所有状态
+        - 其下的所有的Container组件都可以共享它的store状态，因为他们都用`connect`连接上了这个Provider
+* redux控制流程
+    - 用户按下按钮，触发`container`中定义的点击回调函数
+    - 回调函数`dispatch`一个`action`到所有的reducers
+    - reducers返回最新状态
+    - store接收reducers返回的状态，并通知所有注册到它身上的`container`组件
+    - `container`组件发现有状态变化，取出对应的状态，传到下面的显示单元，重新渲染
 
 # 问题汇总
 ## CleanWebpackPlugin
