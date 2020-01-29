@@ -6,13 +6,11 @@ import { reducers } from './reducers/index';
 import './styles/main.scss';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import App from './containers/App';
-
-let store = createStore(reducers);
+import { store } from './store'
 
 ReactDOM.render(
   <Provider store={store}>
     <MuiThemeProvider>
-      <App />
       <App />
     </MuiThemeProvider>
   </Provider>,

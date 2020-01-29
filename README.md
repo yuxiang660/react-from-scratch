@@ -90,6 +90,14 @@
     - reducers返回最新状态
     - store接收reducers返回的状态，并通知所有注册到它身上的`container`组件
     - `container`组件发现有状态变化，取出对应的状态，传到下面的显示单元，重新渲染
+* 加入`redux-saga`中间件
+    - 中间件的作用是，当某个`container`dispatch一个`action`，会先过这个中间件，处理完后再过`reducers`。中间件会修改这个`action`的`payload`，`reducers`会处理这个`payload`，从而影响`store`中的state。
+    - 中间件需要过滤`action`的类型，并返回一个`action`给`reducers`。
+    - 如果需要调用restful API去获取数据，可以`npm i -S axios`安装`axios`实现
+    - `axios`export的函数由`saga`调用，返回的数据被放到`action`的`payload`中
+    - `reducers`接收并处理此带`payload`的`action`后，返回更新后的state，并反应到`store`中
+    - 因此处在`Provider`下的所有组件，都可以知道此状态变化，如果有一个`container`在`connect`的时候利用了此状态，就会产生反应。
+    - 从外部的角度看，`containers`所有`dispatch`动作，会触发一次action，经过中间件和reducers后改变状态。改变状态的时间又会影响所有`containers`。因为`containers`绑定了状态和显示单元的属性。（通过调用`mapStateToProps function`实现，只要状态有变化，就会被调用，参考[说明](https://react-redux.js.org/api/connect#state)）
 
 # 问题汇总
 ## CleanWebpackPlugin
@@ -102,3 +110,10 @@
 > DeprecationWarning: Tapable.plugin is deprecated. Use new API on `.hooks` instead
 * 解决
 用`mini-css-extract-plugin`替换`extract-text-webpack-plugin`, [教程](https://github.com/webpack-contrib/mini-css-extract-plugin)
+## 无法支持async函数
+* 错误
+> Uncaught ReferenceError: regeneratorRuntime is not defined
+* 解决
+添加`@babel/plugin-transform-runtime`, 参考[配置](https://babeljs.io/docs/en/babel-plugin-transform-runtime)
+* 原因
+`@babel/preset-env` -> `@babel/plugin-transform-regenerator` -> `regeneratorRuntime`，参考[解释](https://github.com/babel/babel/issues/9849)
