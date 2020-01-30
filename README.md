@@ -97,7 +97,13 @@
     - `axios`export的函数由`saga`调用，返回的数据被放到`action`的`payload`中
     - `reducers`接收并处理此带`payload`的`action`后，返回更新后的state，并反应到`store`中
     - 因此处在`Provider`下的所有组件，都可以知道此状态变化，如果有一个`container`在`connect`的时候利用了此状态，就会产生反应。
-    - 从外部的角度看，`containers`所有`dispatch`动作，会触发一次action，经过中间件和reducers后改变状态。改变状态的时间又会影响所有`containers`。因为`containers`绑定了状态和显示单元的属性。（通过调用`mapStateToProps function`实现，只要状态有变化，就会被调用，参考[说明](https://react-redux.js.org/api/connect#state)）
+    - 从外部的角度看，`containers`所有`dispatch`动作，会触发一次action，经过中间件和reducers后改变状态。改变状态的时间又会影响所有`containers`。因为`containers`绑定了状态和显示单元的属性。（通过调用`mapStateToProps function`实现，只要状态有变化，就会被调用，参考[说明](https://react-redux.js.org/api/connect#state)
+* historyApiFallback配置
+    - 此配置可以重定位所有url到/index.html
+    > 404s will fallback to /index.html
+    - 举例，如果经过Router，定位到/user页面，此时刷新页面，如果没有此配置，无法重新定位到/user页面。而配置了，刷新后重新回到/index.htm，解析/user后，重新跳转到/user页面。
+* React-Router-Dom
+    - 路由匹配不是全匹配，例如/users路由路径，可以匹配到/usersabc的url
 
 # 问题汇总
 ## CleanWebpackPlugin
